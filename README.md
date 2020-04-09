@@ -1,2 +1,2 @@
 # api-wrmototaxi
- API para consumo do App WR Moto Táxi
+ API Onde o usuário cadastra os pontos de moto-táxi e o app wrmototaxi consome essa API

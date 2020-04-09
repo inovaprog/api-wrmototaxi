@@ -1,0 +1,7 @@
+runtime: nodejs10
+env_variables:
+  AWS_ACCESS_KEY_ID: "AKIAROO4JD6C4O7ON2CY"
+  AWS_SECRET_ACCESS_KEY: "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"
+  ASW_DEFAULT_REGION: "sa-east-1"
+  USER: "adm"
+  SENHA: "wr123"
