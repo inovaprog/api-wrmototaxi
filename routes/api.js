@@ -66,12 +66,13 @@ router.post('/adicionar', upload.single('file'), function(req, res){
     var title = req.body.title
     var endereco = req.body.endereco
     var telefone = req.body.telefone
+    var whatsapp = req.body.whatsapp
     var funcionamento = req.body.funcionamento
     var qtdMotos = parseInt(req.body.qtdMotos)
     var fotos = req.file.key
     var bloqueado = false
  
-     db.adicionar({ coordnate, title,endereco, telefone, funcionamento, qtdMotos, fotos, bloqueado }, (err, result) => {
+     db.adicionar({ coordnate, title,endereco, telefone, whatsapp, funcionamento, qtdMotos, fotos, bloqueado }, (err, result) => {
         if (err) { return console.log(err); }
         res.render('sucesso');
     })

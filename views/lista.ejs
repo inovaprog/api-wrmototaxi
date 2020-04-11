@@ -26,9 +26,10 @@
                 <tr style="background-color: #CCC">
                     <td style="width:5%">Imagem</td>
                     <td style="width:15%">Nome</td>
-                    <td style="width:40%">Endereço</td>
+                    <td style="width:30%">Endereço</td>
                     <td style="width:10%">Funcionamento</td>
                     <td style="width:10%">Telefone</td>
+                    <td style="width:10%">Whatsapp</td>
                     <td style="width:5%">Status</td>
                     <td style="width:5%">Editar</td>
                     <td style="width:5%">Excluir</td>
@@ -46,9 +47,10 @@
                     <td style="width:5%"><img style="width: 100px; height: 60px;"
                             src="https://wrmototaxi.s3-sa-east-1.amazonaws.com/<%= item.fotos %>"></td>
                     <td style="text-transform: uppercase;"> <%= item.title %> </a></td>
-                    <td style="width:40%"><%= item.endereco %></td>
+                    <td style="width:30%"><%= item.endereco %></td>
                     <td style="width:10%"><%= item.funcionamento %></td>
                     <td style="width:10%"><%= item.telefone %></td>
+                    <td style="width:10%"><%= item.whatsapp %></td>
                     <% if(!item.bloqueado) { %>
                     <td style="width:5%">
                         <form action="../../api/bloquear/<%= item._id %>" method="get">
