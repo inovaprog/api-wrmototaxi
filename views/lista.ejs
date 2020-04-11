@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div style="padding: 20px;">
         <h1>
             <center>Lista de Parceiros</center>
         </h1>
@@ -24,7 +24,7 @@
         <table border=1 cellspacing=0 style="width:100%">
             <thead>
                 <tr style="background-color: #CCC">
-                    <td style="width:5%">Imagem</td>
+                    <td style="width:15%">Imagem</td>
                     <td style="width:15%">Nome</td>
                     <td style="width:30%">Endereço</td>
                     <td style="width:10%">Funcionamento</td>
@@ -44,8 +44,18 @@
                 </tr>
                 <% } else {itens.forEach(function(item){ %>
                 <tr>
-                    <td style="width:5%"><img style="width: 100px; height: 60px;"
-                            src="https://wrmototaxi.s3-sa-east-1.amazonaws.com/<%= item.fotos %>"></td>
+                    <td style="width:15%">
+                        <center><img style="width: 100px; height: 60px;"
+                                src="https://wrmototaxi.s3-sa-east-1.amazonaws.com/<%= item.fotos %>">
+                            <form method="POST" action="../../api/foto/<%= item._id %>" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1"
+                                        name="file">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Trocar Foto</button>
+                            </form>
+                        </center>
+                    </td>
                     <td style="text-transform: uppercase;"> <%= item.title %> </a></td>
                     <td style="width:30%"><%= item.endereco %></td>
                     <td style="width:10%"><%= item.funcionamento %></td>
@@ -65,7 +75,12 @@
                         </form>
                     </td>
                     <% }%>
-                    <td style="width:5%">Editar</td>
+                    <td style="width:5%">
+                        <form action="../edit/<%= item._id %>" method="post">
+                            <button type="submit" name="your_name" value="your_value"
+                                class="btn-link">Editar</button>
+                        </form>
+                    </td>
                     <td style="width:5%">
                         <form action="../../api/delete/<%= item._id %>" method="get">
                             <button type="submit" name="your_name" value="your_value" class="btn-link"

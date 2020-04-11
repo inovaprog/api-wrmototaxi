@@ -58,7 +58,7 @@ router.post('/busca', function (req, res, next) {
     })
 });
 
-router.post('/adicionar', upload.single('file'), function(req, res){
+router.post('/adicionar', function(req, res){
     var coordnate = {
         latitude: parseFloat(req.body.latitude),
         longitude: parseFloat(req.body.longitude)
@@ -69,11 +69,25 @@ router.post('/adicionar', upload.single('file'), function(req, res){
     var whatsapp = req.body.whatsapp
     var funcionamento = req.body.funcionamento
     var qtdMotos = parseInt(req.body.qtdMotos)
-    var fotos = req.file.key
+    var fotos = 'padrao-wr.png'
     var bloqueado = false
  
      db.adicionar({ coordnate, title,endereco, telefone, whatsapp, funcionamento, qtdMotos, fotos, bloqueado }, (err, result) => {
         if (err) { return console.log(err); }
+        res.render('sucesso');
+    })
+})
+
+router.post('/foto/:id', upload.single('file'), function(req, res){
+    
+    var fotos = req.file.key
+    var id = req.params.id 
+
+    console.log(fotos)
+    console.log(id)
+
+    db.trocarFoto({id, fotos}, (e, r) => {
+        if (e) { return console.log(e); }
         res.render('sucesso');
     })
 })
@@ -87,8 +101,8 @@ router.get('/delete/:id',  async function (req, res) {
 
 })
 
-router.post('/edit/:id', upload.single('file'), async function (req, res) {
-    var id = req.params.id;
+router.post('/edit/', async function (req, res) {
+    var id = req.body.id;
     
     var coordnate = {
         latitude: parseFloat(req.body.latitude),
@@ -97,19 +111,15 @@ router.post('/edit/:id', upload.single('file'), async function (req, res) {
     var title = req.body.title
     var endereco = req.body.endereco
     var telefone = req.body.telefone
+    var whatsapp = req.body.whatsapp
     var funcionamento = req.body.funcionamento
     var qtdMotos = parseInt(req.body.qtdMotos)
-    var fotos = req.file.key
     var bloqueado = false
  
-     db.adicionar({ coordnate, title,endereco, telefone, funcionamento, qtdMotos, fotos, bloqueado }, (err, result) => {
+     db.editar({id, coordnate, title, endereco, telefone, whatsapp, funcionamento, qtdMotos, bloqueado }, (err, result) => {
         if (err) { return console.log(err); }
-        db.deletar(id, (e, r) => {
-            if (e) { return console.log(e) }
-           res.sendStatus(200)
+        res.render('sucesso');
         });
-    
-    })
 
 })
 
@@ -133,6 +143,15 @@ router.get('/desbloquear/:id',  async function (req, res) {
     });
 
 })
+
+router.post('/buscarum/:id', async function (req, res, next) {
+    var id = req.params.id;
+   
+    db.buscaUm(id, (e, mototaxi) => {
+        if (e) { return console.log(e); }
+        res.send(mototaxi);
+    })
+});
 
 
 

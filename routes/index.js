@@ -36,12 +36,18 @@ router.post('/add', function (req, res, next) {
   res.render('add');
 });
 
-/* Editar ----->   /editar/:id   POST 
+
+/* Editar ----->   /editar/:id   POST*/ 
 router.post('/edit/:id', function (req, res, next) {
-  
-  res.render('add', { dados: retorno });
+  var id = req.params.id
+  //buscar um pelo id
+ 
+  fetch(`http://localhost:3000/api/buscarum/${id}`, { method: "post" })
+    .then(res => res.json())
+    .then(itens => res.render('edit', { itens }))
+
 });
-*/
+
 
 
 

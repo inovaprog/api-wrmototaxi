@@ -54,8 +54,46 @@ function buscarTodos(callback){
     global.conn.collection("mototaxi").find({}).toArray(callback);
 }
 
-function buscarDesbloqueados (callback){
+function buscarDesbloqueados(callback){
     global.conn.collection("mototaxi").find({bloqueado:false}).toArray(callback);
 }
+
+function trocarFoto(item ,callback){
+
+    id = item.id
+    fotos = item.fotos
+
+    global.conn.collection("mototaxi").updateOne({_id: new ObjectId(id)}, {
+        $set: {fotos : fotos}
+    }, callback);
+}
+
+function editar(item, callback){
+
+    id = item.id
+    title = item.title
+    coordnate = item.coordnate
+    qtdMotos = item.qtdMotos
+    endereco = item.endereco
+    telefone = item.telefone
+    whatsapp = item.whatsapp
+    funcionamento = item.funcionamento
+
+    global.conn.collection("mototaxi").updateOne({_id: new ObjectId(id)}, {
+        $set: {title : title,
+               coordnate: coordnate,
+               qtdMotos : qtdMotos,
+               endereco : endereco,
+               telefone, telefone,
+               whatsapp : whatsapp,
+               funcionamento : funcionamento,        
+        }
+    }, callback);
+
+}
+
+function buscaUm(id, callback){
+    global.conn.collection("mototaxi").find({_id: new ObjectId(id)}).toArray(callback);
+}
  
-module.exports = {adicionar, deletar, bloquear, desbloquear, buscarProximos, buscarTodos, buscarDesbloqueados}
+module.exports = {editar, buscaUm, adicionar, deletar, bloquear, desbloquear, buscarProximos, buscarTodos, buscarDesbloqueados, trocarFoto}
