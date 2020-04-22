@@ -76,14 +76,14 @@
                     </td>
                     <% }%>
                     <td style="width:5%">
-                        <form action="../edit/<%= item._id %>" method="post">
+                        <form action="../edit/<%= item._id %>" method="get">
                             <button type="submit" name="your_name" value="your_value"
                                 class="btn-link">Editar</button>
                         </form>
                     </td>
                     <td style="width:5%">
                         <form action="../../api/delete/<%= item._id %>" method="get">
-                            <button type="submit" name="your_name" value="your_value" class="btn-link"
+                            <button type="submit" class="btn-link"
                                 onclick="return confirm('Tem certeza?')">Apagar</button>
                         </form>
                     </td>

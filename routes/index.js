@@ -38,11 +38,11 @@ router.post('/add', function (req, res, next) {
 
 
 /* Editar ----->   /editar/:id   POST*/ 
-router.post('/edit/:id', function (req, res, next) {
+router.get('/edit/:id', function (req, res, next) {
   var id = req.params.id
   //buscar um pelo id
  
-  fetch(`http://localhost:3000/api/buscarum/${id}`, { method: "post" })
+  fetch(`http://www.wrmototaxi.appspot.com/api/buscarum/${id}`, { method: "post" })
     .then(res => res.json())
     .then(itens => res.render('edit', { itens }))
 

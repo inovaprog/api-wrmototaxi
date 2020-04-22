@@ -29,7 +29,7 @@ function desbloquear(id, callback){
 }
 function buscarProximos(ponto, callback){
 
-    var raio = 0.1
+    var raio = 0.007
 
 
     var maxLat = ponto.latitude + raio
